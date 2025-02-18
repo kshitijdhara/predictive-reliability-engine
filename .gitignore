@@ -1,0 +1,4 @@
+.DS_Store
+env/
+__pycache__
+to_remove_from_mac
