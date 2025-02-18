@@ -81,3 +81,23 @@ This layer ensures continuous improvement and robustness of the predictive relia
 - Automated Feedback Loop retrains models based on new failure patterns.
 - Drift Detection (Evidently.ai) ensures predictions remain accurate over time.
 - CI/CD for ML Models: Enables reliable and incremental deployment of predictive models.
+
+
+## How to
+1. Get the environment up
+   ```bash
+   docker-compose -f docker/docker-compose.yaml up -d
+   ```
+2. Create a virtual environment
+   ```bash
+   python -m venv env
+   ```
+3. Download necessary packages
+   ```python
+   pip install --upgrade pip
+   pip install -r requirements.txt
+   ```
+4. Populate the databases with the metrics
+   ```bash
+   python main.py
+   ```
