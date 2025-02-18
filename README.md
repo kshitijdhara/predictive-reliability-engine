@@ -1,4 +1,7 @@
 # Predictive Reliability Engine
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
+
 Predictive Reliability Engine plays a crucial role in ensuring system reliability, from data collection and processing to predictive modeling, automation, visualization, scalability, and continuous improvement. Together, they create a proactive reliability system that prevents failures before they impact users.
 
 ## Data Ingestion & Preprocessing Layer
