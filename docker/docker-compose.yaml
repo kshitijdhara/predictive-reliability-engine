@@ -8,3 +8,10 @@ services:
       - POSTGRES_USER=lmaodead
       - POSTGRES_PASSWORD=lmaodead
       - POSTGRES_DB=metricsdb
+
+  kafka:
+    image: apache/kafka:latest
+    container_name: kafka-broker
+    ports:
+      - "9092:9092"
+    
