@@ -1,0 +1,55 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.3 Safari/605.1.15" version="26.0.14">
+  <diagram name="Page-1" id="6BY3Mi8lnX-jGJb6mqn0">
+    <mxGraphModel dx="1224" dy="725" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="BymQqC9X1tUFXH-bsFHs-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="BymQqC9X1tUFXH-bsFHs-1" target="BymQqC9X1tUFXH-bsFHs-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BymQqC9X1tUFXH-bsFHs-1" value="Log" style="html=1;whiteSpace=wrap;strokeColor=none;fillColor=#0079D6;labelPosition=center;verticalLabelPosition=middle;verticalAlign=top;align=center;fontSize=12;outlineConnect=0;spacingTop=-6;fontColor=#FFFFFF;sketch=0;shape=mxgraph.sitemap.log;" vertex="1" parent="1">
+          <mxGeometry x="70" y="90" width="120" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="BymQqC9X1tUFXH-bsFHs-2" value="Metrics File" style="image;sketch=0;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/mscae/Chart.svg;" vertex="1" parent="1">
+          <mxGeometry x="93.53999999999999" y="210" width="72.92" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="BymQqC9X1tUFXH-bsFHs-3" value="Ci/CD Events" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://e7.pngegg.com/pngimages/302/885/png-clipart-ci-cd-continuous-integration-continuous-delivery-computer-software-software-testing-automation-testing-blue-text-thumbnail.png;" vertex="1" parent="1">
+          <mxGeometry x="95" y="330" width="70" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="BymQqC9X1tUFXH-bsFHs-4" value="Tracing events" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://www.shutterstock.com/image-vector/track-live-location-target-current-260nw-2195517345.jpg;" vertex="1" parent="1">
+          <mxGeometry x="88.21000000000001" y="440" width="83.57" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="BymQqC9X1tUFXH-bsFHs-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="BymQqC9X1tUFXH-bsFHs-5" target="BymQqC9X1tUFXH-bsFHs-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BymQqC9X1tUFXH-bsFHs-5" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;fillColor=#FF6A00;strokeColor=none;shape=mxgraph.alibaba_cloud.kafka;" vertex="1" parent="1">
+          <mxGeometry x="300" y="300" width="56.699999999999996" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="BymQqC9X1tUFXH-bsFHs-15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="BymQqC9X1tUFXH-bsFHs-6" target="BymQqC9X1tUFXH-bsFHs-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BymQqC9X1tUFXH-bsFHs-6" value="" style="points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;fillColor=#FF6A00;strokeColor=none;shape=mxgraph.alibaba_cloud.kafka;" vertex="1" parent="1">
+          <mxGeometry x="480" y="300" width="56.699999999999996" height="42" as="geometry" />
+        </mxCell>
+        <mxCell id="BymQqC9X1tUFXH-bsFHs-7" value="Kafka Producer" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="275" y="338" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BymQqC9X1tUFXH-bsFHs-8" value="Kafka Consumer" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="455" y="338" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="BymQqC9X1tUFXH-bsFHs-9" value="Timescale DB" style="shape=datastore;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="690" y="291" width="60" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BymQqC9X1tUFXH-bsFHs-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.476;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="BymQqC9X1tUFXH-bsFHs-2" target="BymQqC9X1tUFXH-bsFHs-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BymQqC9X1tUFXH-bsFHs-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="BymQqC9X1tUFXH-bsFHs-3" target="BymQqC9X1tUFXH-bsFHs-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="BymQqC9X1tUFXH-bsFHs-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.473;entryY=1.033;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="BymQqC9X1tUFXH-bsFHs-4" target="BymQqC9X1tUFXH-bsFHs-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

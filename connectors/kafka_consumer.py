@@ -15,6 +15,6 @@ class KafkaStreamConsumer:
             print("Received message:", message.value)
 
 if __name__ == "__main__":
-    consumer = KafkaStreamConsumer(topic="system-metrics",
+    consumer = KafkaStreamConsumer(topic="log_files",
                                    bootstrap_servers=["localhost:9092"])
     consumer.consume()
