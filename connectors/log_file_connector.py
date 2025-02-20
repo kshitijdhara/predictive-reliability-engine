@@ -40,38 +40,58 @@ class LogMonitor:
             time.sleep(0.1)
 
     def parse_log_line(self, line):
-        """Parse common syslog format lines into structured data"""
-        pattern = r'^(\w{3}\s\d{1,2}\s\d{2}:\d{2}:\d{2})\s(\S+)\s(\S+?)(\[\d+\])?:\s(.*)$'
-        match = re.match(pattern, line)
+        """Improved syslog parser with better pattern matching"""
+        line = line.strip()
+        if not line:  # Skip empty lines
+            return None
+            
+        # More robust regex pattern
+        pattern = r'''
+            ^
+            (?P<timestamp>\w{3}\s\d{1,2}\s\d{2}:\d{2}:\d{2})  # Mmm DD HH:MM:SS
+            \s+
+            (?P<hostname>\S+)                                # Hostname
+            \s+
+            (?P<service>[\w\-\.]+)                           # Service (allows hyphens/dots)
+            (?:\[(?P<pid>\d+)\])?                            # Optional PID
+            :\s+
+            (?P<message>.*)                                  # Message content
+            $
+        '''
+        match = re.match(pattern, line, re.VERBOSE)
+        
         if match:
             return {
-                'timestamp': match.group(1),
-                'hostname': match.group(2),
-                'service': match.group(3),
-                'pid': match.group(4)[1:-1] if match.group(4) else None,
-                'message': match.group(5),
-                'raw': line.strip()
+                'timestamp': match.group('timestamp'),
+                'hostname': match.group('hostname'),
+                'service': match.group('service'),
+                'pid': match.group('pid'),
+                'message': match.group('message').strip(),
+                'raw': line
             }
-        return {'raw': line.strip()}
+        return {'raw': line}  # Fallback with original content
+
+    def monitor(self):
+        kafka_topic = 'log_files'
+        self.kafka_producer.create_topic(kafka_topic)
+        for line in self._follow():
+            if not line.strip():  # Skip empty lines
+                continue
+                
+            json_line = self.to_json(line)
+            print("Sending:", json_line)  # Debug output
+            self.kafka_producer.send_log_data(topic=kafka_topic, data=json_line)
 
     def to_json(self, line):
         log_entry = self.parse_log_line(line)
         return json.dumps({
             **log_entry,
             'received_at': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()),
-            'source_file': str(self.log_file)
+            'source_file': str(self.log_file),
+            'type': 'log_files'
         })
 
-    def monitor(self):
-        kafka_topic = 'log_files'
-        self.kafka_producer.create_topic(kafka_topic)
-        for line in self._follow():
-            json_line = self.to_json(line)
-            print(json_line)
-            self.kafka_producer.send_log_data(topic=kafka_topic,data=json_line)
             
-            
-    
 
 if __name__ == '__main__':
     # Usage: monitor /var/log/syslog

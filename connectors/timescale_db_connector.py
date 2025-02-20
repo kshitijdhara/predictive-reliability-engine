@@ -10,22 +10,27 @@ class TimescaleDBConnector:
         self.conn = psycopg.connect(conninfo=self.connection_str)
         return self.conn
     
-    def create_table_if_not_present(self):
-        create_table_query = """
-        CREATE TABLE IF NOT EXISTS metrics (
-            timestamp TIMESTAMPTZ NOT NULL,
-            cpu_usage DOUBLE PRECISION,
-            memory_usage DOUBLE PRECISION,
-            disk_io DOUBLE PRECISION,
-            network_latency DOUBLE PRECISION,
-            error_rate DOUBLE PRECISION,
-            PRIMARY KEY (timestamp)
-        );
-        """
+    def create_table_if_not_present(self,type):
+        if type == 'log_files':
+            create_table_query = f"""
+                CREATE TABLE IF NOT EXISTS {type} (
+                    received_at TIMESTAMPTZ NOT NULL,
+                    hostname TEXT NOT NULL,
+                    pid INTEGER NOT NULL,
+                    timestamp TEXT,
+                    service TEXT,
+                    message TEXT,
+                    raw TEXT,
+                    source_file TEXT,
+                    type TEXT,
+                    PRIMARY KEY (received_at, hostname, pid)
+                );
+                """
+            primary_key = 'received_at'
 
         with self.conn.cursor() as cur:
             cur.execute(create_table_query)
-            cur.execute("SELECT create_hypertable('metrics', 'timestamp', if_not_exists => TRUE);")
+            cur.execute(f"SELECT create_hypertable('{type}', '{primary_key}', if_not_exists => TRUE);")
 
         self.conn.commit()
     
