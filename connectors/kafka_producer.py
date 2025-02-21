@@ -49,9 +49,9 @@ class KafkaStreamProducer:
         self.producer.flush()  # Ensure all messages are sent
         print("✅ All metrics have been sent.")
     
-    def send_log_data(self, topic, data):
-        self.producer.send(topic=topic, value=data)
-        print("data sent to topic")
+    def send_log_data(self, topic, key, data):
+        self.producer.send(topic=topic,value=data)
+        print("✅ Data sent to topic")
 
 # Example Usage
 if __name__ == "__main__":

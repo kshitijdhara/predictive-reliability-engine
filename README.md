@@ -97,7 +97,11 @@ This layer ensures continuous improvement and robustness of the predictive relia
    pip install --upgrade pip
    pip install -r requirements.txt
    ```
-4. Populate the databases with the metrics
+4. Start the Connectors
    ```bash
-   python main.py
+   python *_connector.py
+   ```
+5. Start the kafka Consumer
+   ```bash
+   python kafka_consumer.py
    ```
