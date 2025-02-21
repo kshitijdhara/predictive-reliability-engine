@@ -28,10 +28,8 @@ class KafkaStreamConsumer:
 
 if __name__ == "__main__":
     connection_str = f"postgres://{creds.username}:{creds.password}@{creds.connection_url}:{creds.connnection_port}/{creds.db_name}"
-    consumer = KafkaStreamConsumer(topic="system_metrics",
+    consumer = KafkaStreamConsumer(topic="log_files",
                                    bootstrap_servers=["localhost:9092"],
                                    timescaledb_conn= connection_str)
-    consumer.consume()
     consumer.store_data()
-
-
+    consumer.consume()

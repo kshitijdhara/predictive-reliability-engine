@@ -1,5 +1,7 @@
 import psycopg
 import psycopg.sql
+import json
+import timescaledb_queries
 
 class TimescaleDBConnector:
     def __init__(self, connection_str):
@@ -11,39 +13,13 @@ class TimescaleDBConnector:
         return self.conn
     
     def create_table_if_not_present(self,type):
-        if type == "log_files":
-            create_table_query = f"""
-                CREATE TABLE IF NOT EXISTS {type} (
-                    received_at TIMESTAMPTZ NOT NULL,
-                    hostname TEXT NOT NULL,
-                    pid INTEGER NOT NULL,
-                    timestamp TEXT,
-                    service TEXT,
-                    message TEXT,
-                    raw TEXT,
-                    source_file TEXT,
-                    type TEXT,
-                    PRIMARY KEY (received_at, hostname, pid)
-                );
-                """
-            primary_key = 'received_at'
-        if type == "system_metrics":
-            create_table_query = f"""
-                CREATE TABLE IF NOT EXISTS {type} (
-                    timestamp TIMESTAMPTZ NOT NULL,
-                    hostname TEXT NOT NULL,
-                    cpu JSONB,
-                    memory JSONB,
-                    disk JSONB,
-                    network JSONB,
-                    PRIMARY KEY (timestamp, hostname)
-                );
-                """
-            primary_key = 'timestamp'
-            
+        config = timescaledb_queries.table_configs.get(type)
+        if not config:
+            raise ValueError(f"Unsupported table type: {type}")
+        
         with self.conn.cursor() as cur:
-            cur.execute(create_table_query)
-            cur.execute(f"SELECT create_hypertable('{type}', '{primary_key}', if_not_exists => TRUE);")
+            cur.execute(config['query'])
+            cur.execute(f"SELECT create_hypertable('{type}', '{config['primary_key']}', if_not_exists => TRUE);")
 
         self.conn.commit()
     
