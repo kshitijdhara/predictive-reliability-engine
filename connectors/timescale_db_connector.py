@@ -11,7 +11,7 @@ class TimescaleDBConnector:
         return self.conn
     
     def create_table_if_not_present(self,type):
-        if type == 'log_files':
+        if type == "log_files":
             create_table_query = f"""
                 CREATE TABLE IF NOT EXISTS {type} (
                     received_at TIMESTAMPTZ NOT NULL,
@@ -27,7 +27,20 @@ class TimescaleDBConnector:
                 );
                 """
             primary_key = 'received_at'
-
+        if type == "system_metrics":
+            create_table_query = f"""
+                CREATE TABLE IF NOT EXISTS {type} (
+                    timestamp TIMESTAMPTZ NOT NULL,
+                    hostname TEXT NOT NULL,
+                    cpu JSONB,
+                    memory JSONB,
+                    disk JSONB,
+                    network JSONB,
+                    PRIMARY KEY (timestamp, hostname)
+                );
+                """
+            primary_key = 'timestamp'
+            
         with self.conn.cursor() as cur:
             cur.execute(create_table_query)
             cur.execute(f"SELECT create_hypertable('{type}', '{primary_key}', if_not_exists => TRUE);")

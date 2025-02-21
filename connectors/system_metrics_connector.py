@@ -24,6 +24,7 @@ class SystemMonitor:
         metrics = {
             "timestamp": datetime.datetime.now(tz=datetime.UTC).isoformat(),
             "hostname": self.hostname,
+            "type": "system_metrics",
             "cpu": {
                 "percent": psutil.cpu_percent(interval=1),
                 "count": psutil.cpu_count(logical=False),
@@ -63,17 +64,15 @@ class SystemMonitor:
                 metrics = self.get_system_metrics()
                 self.producer.send_log_data(
                     kafka_topic,
-                    key=self.hostname,
                     data=json.dumps(metrics),
                 )
                 time.sleep(interval)
         except KeyboardInterrupt:
             print("\nFlushing remaining metrics...")
-            self.producer.flush()
+            self.producer.interrupt_flush()
             print("Producer shutdown complete")
         except Exception as e:
             print(f'⚠️ Error occurred: {e}')
 
 if __name__ == '__main__':
-    print(type(SystemMonitor().get_system_metrics()))
     SystemMonitor().send_metrics()
