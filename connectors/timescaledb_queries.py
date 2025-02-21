@@ -42,14 +42,14 @@ table_configs = {
         },
         'memory_metrics':{
             'query': """
-            CREATE TABLE memory_metrics (
-                metric_id INTEGER PRIMARY KEY,
-                total_memory BIGINT NOT NULL,
-                available_memory BIGINT NOT NULL,
-                used_memory BIGINT NOT NULL,
-                memory_percent NUMERIC NOT NULL,
-                FOREIGN KEY(metric_id) REFERENCES system_metrics(metric_id)
-                );""",
+                CREATE TABLE memory_metrics (
+                    metric_id INTEGER PRIMARY KEY,
+                    total_memory BIGINT NOT NULL,
+                    available_memory BIGINT NOT NULL,
+                    used_memory BIGINT NOT NULL,
+                    memory_percent NUMERIC NOT NULL,
+                    FOREIGN KEY(metric_id) REFERENCES system_metrics(metric_id)
+                    );""",
             'primary_key': 'metric_id'
         },
         'swap_metrics':{
